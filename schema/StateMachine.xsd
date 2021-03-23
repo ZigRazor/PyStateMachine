@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="pystatemachine:sm"
+            xmlns:sm="pystatemachine:sm">
+    <!-- definition of simple elements -->
+    <xs:element name="Condition" type="sm:NonEmptyString"/>
+    <xs:element name="Action" type="sm:NonEmptyString"/>
+    <!-- definition of simple type -->
+    <xs:simpleType name="NonEmptyString"> <!-- we can describe our types separately to reuse them later -->
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:pattern value=".*[^\s].*" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- definition of Complex Type-->
+    <xs:complexType name="Conditions">
+        <xs:sequence>
+            <xs:element ref="sm:Condition" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Actions">
+        <xs:sequence>
+            <xs:element ref="sm:Action" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+     
+    <!-- definition of attributes -->
+
+    <!-- definition of complex elements -->
+    
+
+    <xs:complexType name="Event">
+        <xs:sequence>
+        <xs:element name="Name" type="sm:NonEmptyString" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="ToState" type="sm:NonEmptyString" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="PreConditions" type="sm:Conditions" minOccurs="0"/>
+        <xs:element name="PostConditions" type="sm:Conditions" minOccurs="0"/>        
+        <xs:element name="PreActions" type="sm:Actions" minOccurs="0"/>
+        <xs:element name="PostActions" type="sm:Actions" minOccurs="0"/>        
+        </xs:sequence>        
+    </xs:complexType>
+
+    <!--xs:element name="State"-->
+    <xs:complexType name="StateType">
+        <xs:sequence>
+            <xs:element name="Name" type="sm:NonEmptyString" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Event" type="sm:Event" minOccurs="1"/>            
+        </xs:sequence>
+    </xs:complexType>
+    <!--/xs:element-->
+
+    <xs:complexType name="StateList">
+        <xs:sequence>
+        <xs:element name="State" type="sm:StateType" minOccurs="2" maxOccurs="unbounded"/>
+        <xs:element name="Initial_State" type="sm:NonEmptyString"  minOccurs="1" maxOccurs="1"/> 
+        </xs:sequence>               
+    </xs:complexType>
+
+    <xs:element name="States" type="sm:StateList"/>
+
+</xs:schema>
