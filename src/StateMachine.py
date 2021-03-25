@@ -7,6 +7,7 @@ class StateMachine:
         self.xml_file = xml_file
         self.states = None
         self.current_state = ""
+        self.context = {}
 
     def get_current_state(self):
         return self.current_state
@@ -17,18 +18,44 @@ class StateMachine:
         else:    
             self.xml_file
             self.states , self.current_state = ReadStateMachineFile(self.xml_file)
+
+    def addVariableToContext(self, module : str, variable : str):
+        mod = __import__(module)
+        func = getattr(mod, variable)
+        self.context[module+"."+variable] = func
         
     def InjectEvent(self, event : str):
         my_state = self.states[self.current_state]
-        possible_events = my_state.get_events()
+        possible_events = my_state.events
         if event in possible_events:
             handled_event = possible_events[event]
             ## Preconditions
-            ## Preactions
-            print("Transition ", self.current_state, " ------> ", handled_event.get_to_state())
-            self.current_state = handled_event.get_to_state()
-            ## Postactions
-            ## Postconditions
+            all_pre_conditions_satisfied = True
+            if(handled_event.pre_conditions != None):
+                pre_conditions = handled_event.pre_conditions.conditions
+                for condition in pre_conditions:
+                    if condition.expression in self.context:
+                        func = self.context[condition.expression]
+                        result = None
+                        if callable(func):
+                            result = func()
+                        else:
+                            result = func
+                        if str(result) != condition.result:
+                           all_pre_conditions_satisfied = False
+                           break
+            else:
+                print("No Precondition")
+
+            if(all_pre_conditions_satisfied):
+                ## Preactions
+                ## Transition
+                print("Transition ", self.current_state, " ------> ", handled_event.to_state)
+                self.current_state = handled_event.to_state
+                ## Postactions
+                ## Postconditions
+            else:
+                print("Not all PreConditions satisfied")
         else:
             print("Not a possible event")
 

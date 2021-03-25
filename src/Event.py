@@ -9,24 +9,6 @@ class Event:
         self.post_conditions = post_conditions
         self.pre_actions = pre_actions
         self.post_actions = post_actions
-
-    def get_name(self):
-        return self.name
-
-    def get_to_state(self):
-        return self.to_state
-    
-    def get_pre_conditions(self):
-        return self.pre_conditions
-
-    def get_post_conditions(self):
-        return self.post_conditions
-    
-    def get_pre_actions(self):
-        return self.pre_actions
-
-    def get_post_actions(self):
-        return self.post_actions
         
     def to_string(self):
         result_s = "Event: \n"

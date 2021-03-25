@@ -3,7 +3,7 @@
             targetNamespace="pystatemachine:sm"
             xmlns:sm="pystatemachine:sm">
     <!-- definition of simple elements -->
-    <xs:element name="Condition" type="sm:NonEmptyString"/>
+    <!--xs:element name="Condition" type="sm:NonEmptyString"/-->
     <xs:element name="Action" type="sm:NonEmptyString"/>
     <!-- definition of simple type -->
     <xs:simpleType name="NonEmptyString"> <!-- we can describe our types separately to reuse them later -->
@@ -14,9 +14,17 @@
     </xs:simpleType>
 
     <!-- definition of Complex Type-->
+    <xs:complexType name="Condition">
+        <xs:sequence>
+            <xs:element name="Expression" type="sm:NonEmptyString" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Result" type="sm:NonEmptyString" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
     <xs:complexType name="Conditions">
         <xs:sequence>
-            <xs:element ref="sm:Condition" minOccurs="1"/>
+            <xs:element name="Condition" type="sm:Condition" minOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 

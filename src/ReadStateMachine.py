@@ -1,3 +1,4 @@
+from Condition import Condition
 from Conditions import Conditions
 from Actions import Actions
 from Event import Event
@@ -25,8 +26,8 @@ def ReadStateMachineFile(xml_file : str):
                     # State->Event Element
                     event_name = ""
                     to_state = ""
-                    pre_conditions = Conditions("") # dummy
-                    post_conditions = Conditions("") # dummy
+                    pre_conditions = None # dummy
+                    post_conditions = None # dummy
                     pre_actions = Actions("") #dummy
                     post_actions = Actions("") #dummy
                     
@@ -43,10 +44,20 @@ def ReadStateMachineFile(xml_file : str):
                             to_state = event_child.text
                         elif event_child.tag == "PreConditions":
                             # State->Event->PreConditions Element
+                            pre_condition_elements = []
                             for preconditions_child in event_child:
                                 #print(preconditions_child.text)
                                 # State->Event->PreConditions->Condition Element
-                                None
+                                if preconditions_child.tag == "Condition":
+                                    expression = ""
+                                    result = ""
+                                    for condition_child in preconditions_child:
+                                        if condition_child.tag == "Expression":
+                                            expression = condition_child.text
+                                        elif condition_child.tag == "Result":
+                                            result = condition_child.text
+                                    pre_condition_elements.append(Condition(expression,result))
+                            pre_conditions = Conditions(pre_condition_elements)
                         elif event_child.tag == "PostConditions":
                             # State->Event->PostConditions Element
                             for postconditions_child in event_child:
