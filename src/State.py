@@ -4,6 +4,12 @@ class State:
     def __init__(self, name: str, events = {}):
         self.name = name
         self.events = events
+
+    def get_name(self):
+        return self.name
+
+    def get_events(self):
+        return self.events
         
     def to_string(self):
         result_s = "State:\n"
