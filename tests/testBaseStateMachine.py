@@ -124,6 +124,5 @@ class TestBaseStateMachine(unittest.TestCase):
         self.assertEqual(sm.get_current_state(),"Null", "Should be Null")
 
     
-    
 if __name__ == '__main__':
     unittest.main()
