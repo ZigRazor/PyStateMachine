@@ -7,11 +7,11 @@
             <ToState>Exit</ToState>
             <PreConditions>
                 <Condition>
-                    <Expression>test2.everFalse</Expression>
+                    <Expression>testBaseStateMachine.everFalse</Expression>
                     <Result>False</Result>
                 </Condition>
                 <Condition>
-                    <Expression>test2.test</Expression>
+                    <Expression>testBaseStateMachine.test</Expression>
                     <Result>2</Result>
                 </Condition>
             </PreConditions>
@@ -24,7 +24,7 @@
             <ToState>Null</ToState>
             <PreConditions>
                 <Condition>
-                    <Expression>test2.everFalse</Expression>
+                    <Expression>testBaseStateMachine.everFalse</Expression>
                     <Result>True</Result>
                 </Condition>
             </PreConditions>

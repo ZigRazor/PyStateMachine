@@ -1,6 +1,7 @@
 from ReadStateMachine import ReadStateMachineFile
 from State import State
 from Event import Event
+import logging
 
 class StateMachine:
     def __init__(self, xml_file : str):
@@ -8,6 +9,7 @@ class StateMachine:
         self.states = None
         self.current_state = ""
         self.context = {}
+        logging.basicConfig(filename=xml_file.split(sep=".xml")[0] + '.log',format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
     def __CheckConditions(self,conditions):
         all_conditions_satisfied = True
@@ -25,10 +27,10 @@ class StateMachine:
                         all_conditions_satisfied = False
                         break
                 else:
-                    print("No Found Condition Expression ", condition.expression ," in Context")
+                    logging.error("No Found Condition Expression %s in Context", condition.expression)
                     all_conditions_satisfied = False      
         else:
-            print("No Condition")
+            logging.info("No Condition")
         return all_conditions_satisfied
 
     def __ExecActions(self,actions):
@@ -44,10 +46,10 @@ class StateMachine:
                     else:
                         func 
                 else:
-                    print("No Found Action Expression ", action.expression ," in Context")
+                    logging.error("No Found Action Expression %s in Context", action.expression)
                     all_action_executed = False;                
         else:
-            print("No Action")        
+            logging.info("No Action")        
         return all_action_executed
 
     def get_current_state(self):
@@ -55,10 +57,11 @@ class StateMachine:
 
     def LoadStateMachine(self):
         if (self.states != None):
-            print("State Machine already loaded")
+            logging.error("State Machine already loaded")
         else:    
             self.xml_file
             self.states , self.current_state = ReadStateMachineFile(self.xml_file)
+            logging.info('State Machine Loaded')
 
     def addVariableToContext(self, module : str, variable : str):
         mod = __import__(module)
@@ -77,14 +80,14 @@ class StateMachine:
                 all_pre_actions_executed = self.__ExecActions(handled_event.pre_actions)
                 if(all_pre_actions_executed):
                     ## Transition
-                    print("Transition ", self.current_state, " ------> ", handled_event.to_state)
+                    logging.debug("Transition %s ------> %s", self.current_state, handled_event.to_state)
                     self.current_state = handled_event.to_state
                     ## Postactions
                     ## Postconditions
             else:
-                print("Not all PreConditions satisfied")
+                logging.error("Not all PreConditions satisfied")
         else:
-            print("Not a possible event")
+            logging.error("Not a possible event")
 
     
         
