@@ -9,6 +9,25 @@ class StateMachine:
         self.current_state = ""
         self.context = {}
 
+    def __CheckCondition(self,conditions):
+        all_conditions_satisfied = True
+        if(conditions != None):
+            conditions = conditions.conditions
+            for condition in conditions:
+                if condition.expression in self.context:
+                    func = self.context[condition.expression]
+                    result = None
+                if callable(func):
+                    result = func()
+                else:
+                    result = func
+                if str(result) != condition.result:
+                    all_conditions_satisfied = False
+                    break
+        else:
+            print("No Precondition")
+        return all_conditions_satisfied
+
     def get_current_state(self):
         return self.current_state
 
@@ -30,23 +49,7 @@ class StateMachine:
         if event in possible_events:
             handled_event = possible_events[event]
             ## Preconditions
-            all_pre_conditions_satisfied = True
-            if(handled_event.pre_conditions != None):
-                pre_conditions = handled_event.pre_conditions.conditions
-                for condition in pre_conditions:
-                    if condition.expression in self.context:
-                        func = self.context[condition.expression]
-                        result = None
-                        if callable(func):
-                            result = func()
-                        else:
-                            result = func
-                        if str(result) != condition.result:
-                           all_pre_conditions_satisfied = False
-                           break
-            else:
-                print("No Precondition")
-
+            all_pre_conditions_satisfied = self.__CheckCondition(handled_event.pre_conditions)
             if(all_pre_conditions_satisfied):
                 ## Preactions
                 ## Transition
@@ -58,4 +61,8 @@ class StateMachine:
                 print("Not all PreConditions satisfied")
         else:
             print("Not a possible event")
+
+    
+        
+
 
