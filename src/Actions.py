@@ -1,6 +1,6 @@
 class Actions:
-    def __init__(self, action : str):
-        self.action = action
+    def __init__(self, actions = []):
+        self.actions = actions
         
     def to_string(self):
         result_s = ""

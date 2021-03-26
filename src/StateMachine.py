@@ -9,24 +9,46 @@ class StateMachine:
         self.current_state = ""
         self.context = {}
 
-    def __CheckCondition(self,conditions):
+    def __CheckConditions(self,conditions):
         all_conditions_satisfied = True
         if(conditions != None):
-            conditions = conditions.conditions
-            for condition in conditions:
+            _conditions = conditions.conditions
+            for condition in _conditions:
                 if condition.expression in self.context:
                     func = self.context[condition.expression]
                     result = None
-                if callable(func):
-                    result = func()
+                    if callable(func):
+                        result = func()
+                    else:
+                        result = func
+                    if str(result) != condition.result:
+                        all_conditions_satisfied = False
+                        break
                 else:
-                    result = func
-                if str(result) != condition.result:
-                    all_conditions_satisfied = False
-                    break
+                    print("No Found Condition Expression ", condition.expression ," in Context")
+                    all_conditions_satisfied = False      
         else:
-            print("No Precondition")
+            print("No Condition")
         return all_conditions_satisfied
+
+    def __ExecActions(self,actions):
+        all_action_executed = True
+        if(actions != None):
+            _actions = actions.actions
+            for action in _actions:
+                if action.expression in self.context:
+                    func = self.context[action.expression]                    
+                    if callable(func):
+                        #print("Call ",action.expression)
+                        func()
+                    else:
+                        func 
+                else:
+                    print("No Found Action Expression ", action.expression ," in Context")
+                    all_action_executed = False;                
+        else:
+            print("No Action")        
+        return all_action_executed
 
     def get_current_state(self):
         return self.current_state
@@ -49,14 +71,16 @@ class StateMachine:
         if event in possible_events:
             handled_event = possible_events[event]
             ## Preconditions
-            all_pre_conditions_satisfied = self.__CheckCondition(handled_event.pre_conditions)
+            all_pre_conditions_satisfied = self.__CheckConditions(handled_event.pre_conditions)
             if(all_pre_conditions_satisfied):
                 ## Preactions
-                ## Transition
-                print("Transition ", self.current_state, " ------> ", handled_event.to_state)
-                self.current_state = handled_event.to_state
-                ## Postactions
-                ## Postconditions
+                all_pre_actions_executed = self.__ExecActions(handled_event.pre_actions)
+                if(all_pre_actions_executed):
+                    ## Transition
+                    print("Transition ", self.current_state, " ------> ", handled_event.to_state)
+                    self.current_state = handled_event.to_state
+                    ## Postactions
+                    ## Postconditions
             else:
                 print("Not all PreConditions satisfied")
         else:

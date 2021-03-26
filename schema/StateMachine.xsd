@@ -4,7 +4,7 @@
             xmlns:sm="pystatemachine:sm">
     <!-- definition of simple elements -->
     <!--xs:element name="Condition" type="sm:NonEmptyString"/-->
-    <xs:element name="Action" type="sm:NonEmptyString"/>
+    <!--xs:element name="Action" type="sm:NonEmptyString"/-->
     <!-- definition of simple type -->
     <xs:simpleType name="NonEmptyString"> <!-- we can describe our types separately to reuse them later -->
         <xs:restriction base="xs:string">
@@ -21,6 +21,12 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="Action">
+        <xs:sequence>
+            <xs:element name="Expression" type="sm:NonEmptyString" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
 
     <xs:complexType name="Conditions">
         <xs:sequence>
@@ -30,7 +36,7 @@
 
     <xs:complexType name="Actions">
         <xs:sequence>
-            <xs:element ref="sm:Action" minOccurs="1"/>
+            <xs:element name="Action" type="sm:Action" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
      

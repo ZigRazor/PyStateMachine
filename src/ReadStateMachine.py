@@ -1,6 +1,7 @@
 from Condition import Condition
 from Conditions import Conditions
 from Actions import Actions
+from Action import Action
 from Event import Event
 from State import State
 import xml.etree.ElementTree as ET
@@ -28,8 +29,8 @@ def ReadStateMachineFile(xml_file : str):
                     to_state = ""
                     pre_conditions = None # dummy
                     post_conditions = None # dummy
-                    pre_actions = Actions("") #dummy
-                    post_actions = Actions("") #dummy
+                    pre_actions = None #dummy
+                    post_actions = None #dummy
                     
                     for event_child in state_child:
                                                 
@@ -66,10 +67,18 @@ def ReadStateMachineFile(xml_file : str):
                                 None
                         elif event_child.tag == "PreActions":
                             # State->Event->PreActions Element
+                            pre_action_elements = []
                             for preactions_child in event_child:
                                 #print(preactions_child.text)
                                 # State->Event->PreActions->Action Element
-                                None
+                                if preactions_child.tag == "Action":
+                                    expression = ""                                   
+                                    for action_child in preactions_child:
+                                        if action_child.tag == "Expression":
+                                            expression = action_child.text
+                                    pre_action_elements.append(Action(expression))
+                            pre_actions = Actions(pre_action_elements)
+
                         elif event_child.tag == "PostActions":
                             # State->Event->PostActions Element
                             for postactions_child in event_child:
