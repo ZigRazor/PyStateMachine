@@ -13,6 +13,9 @@ Work in Progess
 ## Example
 Work in Progess
 
+## Test Suite
+Work in Progress
+
 ## How to contribute [![GitHub contributors](https://img.shields.io/github/contributors/ZigRazor/PyStateMachine.svg)](https://GitHub.com/ZigRazor/PyStateMachine/graphs/contributors/)
 Read the [CONTRIBUTING GUIDE](https://github.com/ZigRazor/PyStateMachine/blob/main/CONTRIBUTING.md)
 ## Contact

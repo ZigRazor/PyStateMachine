@@ -7,17 +7,17 @@
             <ToState>Exit</ToState>
             <PreConditions>
                 <Condition>
-                    <Expression>test3.everFalse</Expression>
+                    <Expression>testBaseStateMachine.everFalse</Expression>
                     <Result>False</Result>
                 </Condition>
                 <Condition>
-                    <Expression>test3.test</Expression>
+                    <Expression>testBaseStateMachine.test</Expression>
                     <Result>2</Result>
                 </Condition>
             </PreConditions>            
             <PreActions>
                 <Action>
-                    <Expression>test3.testPrint</Expression>
+                    <Expression>testBaseStateMachine.testPrint</Expression>
                 </Action>
             </PreActions>
         </Event>
@@ -29,7 +29,7 @@
             <ToState>Null</ToState>
             <PreConditions>
                 <Condition>
-                    <Expression>test3.everFalse</Expression>
+                    <Expression>testBaseStateMachine.everFalse</Expression>
                     <Result>True</Result>
                 </Condition>
             </PreConditions>
