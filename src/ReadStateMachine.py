@@ -61,10 +61,20 @@ def ReadStateMachineFile(xml_file : str):
                             pre_conditions = Conditions(pre_condition_elements)
                         elif event_child.tag == "PostConditions":
                             # State->Event->PostConditions Element
+                            post_condition_elements = []
                             for postconditions_child in event_child:
                                 #print(postconditions_child.text)
                                 # State->Event->PostConditions->Condition Element
-                                None
+                                if postconditions_child.tag == "Condition":
+                                    expression = ""
+                                    result = ""
+                                    for condition_child in postconditions_child:
+                                        if condition_child.tag == "Expression":
+                                            expression = condition_child.text
+                                        elif condition_child.tag == "Result":
+                                            result = condition_child.text
+                                    post_condition_elements.append(Condition(expression,result))
+                            post_conditions = Conditions(post_condition_elements)
                         elif event_child.tag == "PreActions":
                             # State->Event->PreActions Element
                             pre_action_elements = []
@@ -91,7 +101,7 @@ def ReadStateMachineFile(xml_file : str):
                                         if action_child.tag == "Expression":
                                             expression = action_child.text
                                     post_action_elements.append(Action(expression))
-                            post_actions = Actions(pre_action_elements)
+                            post_actions = Actions(post_action_elements)
                             
                     events[event_name] = Event(event_name,to_state,pre_conditions,post_conditions,pre_actions,post_actions)
                     #print(event.to_string())
