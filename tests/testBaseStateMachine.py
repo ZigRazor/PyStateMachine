@@ -9,6 +9,9 @@ test = 2
 def everFalse():
     return False
 
+def everTrue():
+    return True
+
 def testPrint():
     print("Test")
     
@@ -91,6 +94,34 @@ class TestBaseStateMachine(unittest.TestCase):
         # Precondition Not Verified
         sm.InjectEvent("ToNull")
         self.assertEqual(sm.get_current_state(),"Exit", "Should be Exit")
+
+    def test4(self):
+        sm = StateMachine("../sample/sample4.xml")
+
+        sm.LoadStateMachine()
+
+        sm.addVariableToContext("testBaseStateMachine", "everFalse")
+        sm.addVariableToContext("testBaseStateMachine", "everTrue")
+        sm.addVariableToContext("testBaseStateMachine", "test")
+        sm.addVariableToContext("testBaseStateMachine", "testPrint")
+    
+        self.assertEqual(sm.get_current_state(),"Enter", "Should be Enter")
+        # Precondition Verified / Execute PreAction
+        sm.InjectEvent("ToExit")
+        self.assertEqual(sm.get_current_state(),"Exit", "Should be Exit")
+        # Not Valid Event
+        sm.InjectEvent("ToExit")
+        self.assertEqual(sm.get_current_state(),"Exit", "Should be Exit")
+        
+        # Precondition Verified /Execute Post Action
+        sm.InjectEvent("ToNull")
+        self.assertEqual(sm.get_current_state(),"Null", "Should be Null")
+        # Not Valid Event
+        sm.InjectEvent("ToExit")
+        self.assertEqual(sm.get_current_state(),"Null", "Should be Null")
+        # Precondition Verified /Execute Post Action
+        sm.InjectEvent("ToNull")
+        self.assertEqual(sm.get_current_state(),"Null", "Should be Null")
 
     
     
