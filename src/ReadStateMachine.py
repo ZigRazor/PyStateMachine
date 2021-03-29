@@ -81,10 +81,18 @@ def ReadStateMachineFile(xml_file : str):
 
                         elif event_child.tag == "PostActions":
                             # State->Event->PostActions Element
+                            post_action_elements = []
                             for postactions_child in event_child:
                                 #print(postactions_child.text)
                                 # State->Event->PostActions->Action Element
-                                None
+                                if postactions_child.tag == "Action":
+                                    expression = ""                                   
+                                    for action_child in postactions_child:
+                                        if action_child.tag == "Expression":
+                                            expression = action_child.text
+                                    post_action_elements.append(Action(expression))
+                            post_actions = Actions(pre_action_elements)
+                            
                     events[event_name] = Event(event_name,to_state,pre_conditions,post_conditions,pre_actions,post_actions)
                     #print(event.to_string())
                 elif state_child.tag == "Name":

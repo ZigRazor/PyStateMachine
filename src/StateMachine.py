@@ -79,11 +79,19 @@ class StateMachine:
                 ## Preactions
                 all_pre_actions_executed = self.__ExecActions(handled_event.pre_actions)
                 if(all_pre_actions_executed):
+                    ## Save Old State
                     ## Transition
                     logging.debug("Transition %s ------> %s", self.current_state, handled_event.to_state)
                     self.current_state = handled_event.to_state
                     ## Postactions
-                    ## Postconditions
+                    all_post_actions_executed = self.__ExecActions(handled_event.post_actions)
+                    if(all_post_actions_executed):
+                        None
+                        ## Postconditions
+                    else:
+                        logging.error("Not all PostActions Executed")
+                else:
+                    logging.error("Not all PretActions Executed")                    
             else:
                 logging.error("Not all PreConditions satisfied")
         else:
