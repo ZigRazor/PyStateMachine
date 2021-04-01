@@ -71,7 +71,8 @@ class StateMachine:
         self.current_state = self.saved_state[0]
         self.context = self.saved_state[1]
 
-    def __PrepareExpression(self,expression):
+    @staticmethod
+    def __PrepareExpression(expression):
         module_expression=expression.rsplit('.',1)
         return module_expression[0],module_expression[1]
 
