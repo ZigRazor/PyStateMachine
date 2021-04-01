@@ -1,6 +1,4 @@
 from ReadStateMachine import ReadStateMachineFile
-from State import State
-from Event import Event
 import logging
 
 class StateMachine:
