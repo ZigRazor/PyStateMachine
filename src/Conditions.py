@@ -1,5 +1,7 @@
 class Conditions:
-    def __init__(self, conditions = [] ):
+    def __init__(self, conditions = None ):
+        if conditions is None:
+            conditions = []
         self.conditions = conditions
 
     @staticmethod

@@ -1,5 +1,7 @@
 class State:
-    def __init__(self, name: str, events = {}):
+    def __init__(self, name: str, events = None):
+        if events is None:
+            events = {}
         self.name = name
         self.events = events
       
