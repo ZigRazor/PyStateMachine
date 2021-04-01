@@ -14,7 +14,7 @@ class StateMachine:
 
     def __CheckConditions(self,conditions):
         all_conditions_satisfied = True
-        if(conditions != None):
+        if(conditions is not None):
             _conditions = conditions.conditions
             for condition in _conditions:
                 module,expression = self.__PrepareExpression(condition.expression)
@@ -42,7 +42,7 @@ class StateMachine:
 
     def __ExecActions(self,actions):
         all_action_executed = True
-        if(actions != None):
+        if(actions is not None):
             _actions = actions.actions
             for action in _actions:
                 module,expression = self.__PrepareExpression(action.expression)
@@ -79,7 +79,7 @@ class StateMachine:
         return self.current_state
 
     def LoadStateMachine(self):
-        if (self.states != None):
+        if (self.states is not None):
             logging.error("State Machine already loaded")
         else:    
             self.xml_file
