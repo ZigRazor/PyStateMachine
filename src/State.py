@@ -1,10 +1,10 @@
 class State:
-    def __init__(self, name: str, events = None):
+    def __init__(self, name: str, events=None):
         if events is None:
             events = {}
         self.name = name
         self.events = events
-      
+
     def to_string(self):
         result_s = "State:\n"
         result_s += "  Name: " + self.name + "\n"
