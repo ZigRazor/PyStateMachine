@@ -1,5 +1,5 @@
 class Conditions:
-    def __init__(self, conditions = None ):
+    def __init__(self, conditions=None):
         if conditions is None:
             conditions = []
         self.conditions_list = conditions
