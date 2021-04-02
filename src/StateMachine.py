@@ -50,8 +50,6 @@ class StateMachine:
                         func = getattr(mod, expression) 
                         if callable(func):
                             func()
-                        else:
-                            func
                     except AttributeError:
                         logging.error("Not Found Expression %s in Context", action.expression)
                         all_action_executed = False;
@@ -81,7 +79,6 @@ class StateMachine:
         if (self.states is not None):
             logging.error("State Machine already loaded")
         else:    
-            self.xml_file
             self.states , self.current_state = ReadStateMachineFile(self.xml_file)
             logging.info('State Machine Loaded')
 
