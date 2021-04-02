@@ -3,6 +3,7 @@ class Condition:
         self.expression = expression
         self.result = result
         
-    def to_string(self):
+    @staticmethod
+    def to_string():
         result_s = ""
         return result_s

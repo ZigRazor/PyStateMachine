@@ -1,6 +1,4 @@
 from ReadStateMachine import ReadStateMachineFile
-from State import State
-from Event import Event
 import logging
 
 class StateMachine:
@@ -14,7 +12,7 @@ class StateMachine:
 
     def __CheckConditions(self,conditions):
         all_conditions_satisfied = True
-        if(conditions != None):
+        if(conditions is not None):
             _conditions = conditions.conditions
             for condition in _conditions:
                 module,expression = self.__PrepareExpression(condition.expression)
@@ -42,7 +40,7 @@ class StateMachine:
 
     def __ExecActions(self,actions):
         all_action_executed = True
-        if(actions != None):
+        if(actions is not None):
             _actions = actions.actions
             for action in _actions:
                 module,expression = self.__PrepareExpression(action.expression)
@@ -71,7 +69,8 @@ class StateMachine:
         self.current_state = self.saved_state[0]
         self.context = self.saved_state[1]
 
-    def __PrepareExpression(self,expression):
+    @staticmethod
+    def __PrepareExpression(expression):
         module_expression=expression.rsplit('.',1)
         return module_expression[0],module_expression[1]
 
@@ -79,7 +78,7 @@ class StateMachine:
         return self.current_state
 
     def LoadStateMachine(self):
-        if (self.states != None):
+        if (self.states is not None):
             logging.error("State Machine already loaded")
         else:    
             self.xml_file

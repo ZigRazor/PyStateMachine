@@ -2,6 +2,7 @@ class Action:
     def __init__(self, expression :str):
         self.expression = expression
                 
-    def to_string(self):
+    @staticmethod
+    def to_string():
         result_s = ""
         return result_s

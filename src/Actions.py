@@ -1,7 +1,9 @@
 class Actions:
-    def __init__(self, actions = []):
+    def __init__(self, actions = None):
+        if actions is None:
+            actions = []
         self.actions = actions
-        
-    def to_string(self):
+    @staticmethod
+    def to_string():
         result_s = ""
         return result_s
