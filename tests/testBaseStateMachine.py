@@ -3,8 +3,6 @@ import unittest
 sys.path.append('../src')
 
 from StateMachine import StateMachine
-
-global test
 test = 2
 
 def everFalse():
