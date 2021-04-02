@@ -4,7 +4,7 @@ from Actions import Actions
 from Action import Action
 from Event import Event
 from State import State
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET
 
 
 def ReadStateMachineFile(xml_file : str):
