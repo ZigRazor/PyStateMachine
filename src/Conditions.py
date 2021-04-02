@@ -2,7 +2,7 @@ class Conditions:
     def __init__(self, conditions = None ):
         if conditions is None:
             conditions = []
-        self.conditions = conditions
+        self.conditions_list = conditions
 
     @staticmethod
     def to_string():
