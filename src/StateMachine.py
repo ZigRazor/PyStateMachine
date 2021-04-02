@@ -3,7 +3,23 @@ import logging
 
 
 class StateMachine:
+    """
+    This is a class defines state machine operations.
+      
+    Attributes:
+        xml_file (str): The name of the xml that defines the state machine.
+        states (list): list of possible states of the machine.
+        current_state (str): the current state of the machine.
+        context (dict): dictionary that contains the imported module at runtime for state machine operations.
+        saved_state (list): list of variables for restore state in case of rollback.
+    """
     def __init__(self, xml_file: str):
+        """
+        The constructor for StateMachine class.
+  
+        Parameters:
+           xml_file (str): The name of the xml that defines the state machine.
+        """
         self.xml_file = xml_file
         self.states = None
         self.current_state = ""
@@ -13,6 +29,14 @@ class StateMachine:
                             0] + '.log', format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
     def __CheckConditions(self, conditions):
+        """
+        This Function checks the conditions passed as argument
+  
+        Parameters:
+           conditions (list): List of condition to check.
+        Returns:
+            all_conditions_satisfied: a boolean that indicates if all conditions are satisfied
+        """
         all_conditions_satisfied = True
         if(conditions is not None):
             _conditions = conditions.conditions_list
@@ -43,6 +67,14 @@ class StateMachine:
         return all_conditions_satisfied
 
     def __ExecActions(self, actions):
+        """
+        This Function executes the actions passed as argument
+  
+        Parameters:
+           actions (list): List of actions to execute.
+        Returns:
+            all_action_executed: a boolean that indicates if all actions are executed
+        """
         all_action_executed = True
         if(actions is not None):
             _actions = actions.actions_list
@@ -67,21 +99,45 @@ class StateMachine:
         return all_action_executed
 
     def __SaveState(self):
+        """
+        This Function saves internal state
+        """
         self.saved_state = [self.current_state, self.context]
 
     def __RestoreState(self):
+        """
+        This Function restores the saved state
+        """
         self.current_state = self.saved_state[0]
         self.context = self.saved_state[1]
 
     @staticmethod
     def __PrepareExpression(expression):
+        """
+        This Function split expression in module and expression
+  
+        Parameters:
+           expression (str): complete expression.
+        Returns:
+            module (str): module string
+            expression (str): expression string
+        """
         module_expression = expression.rsplit('.', 1)
         return module_expression[0], module_expression[1]
 
     def get_current_state(self):
+        """
+        This Function return current state
+
+        Returns:
+            current_state (str): current state
+        """
         return self.current_state
 
     def LoadStateMachine(self):
+        """
+        This Function load state machine configuration
+        """
         if (self.states is not None):
             logging.error("State Machine already loaded")
         else:
@@ -90,10 +146,22 @@ class StateMachine:
             logging.info('State Machine Loaded')
 
     def addModuleToContext(self, module: str):
+        """
+        This Function adds a module to the context of state machine
+  
+        Parameters:
+           module (str): The module to add.
+        """
         mod = __import__(module)
         self.context[module] = mod
 
     def InjectEvent(self, event: str):
+        """
+        This Function execute the event injected
+  
+        Parameters:
+           event (str): Event injected
+        """
         my_state = self.states[self.current_state]
         possible_events = my_state.events
         if event in possible_events:
