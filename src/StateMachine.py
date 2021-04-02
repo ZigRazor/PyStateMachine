@@ -28,7 +28,7 @@ class StateMachine:
                         if str(result) != condition.result:
                             all_conditions_satisfied = False
                             break
-                    except:
+                    except AttributeError:
                         logging.error("Not Found Expression %s in Context", condition.expression)
                         all_conditions_satisfied = False  
                 else:
@@ -52,7 +52,7 @@ class StateMachine:
                             func()
                         else:
                             func
-                    except:
+                    except AttributeError:
                         logging.error("Not Found Expression %s in Context", action.expression)
                         all_action_executed = False;
                 else:
