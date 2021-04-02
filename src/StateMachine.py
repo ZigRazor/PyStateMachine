@@ -13,7 +13,7 @@ class StateMachine:
     def __CheckConditions(self,conditions):
         all_conditions_satisfied = True
         if(conditions is not None):
-            _conditions = conditions.conditions
+            _conditions = conditions.conditions_list
             for condition in _conditions:
                 module,expression = self.__PrepareExpression(condition.expression)
                 if module in self.context:                    
@@ -28,7 +28,7 @@ class StateMachine:
                         if str(result) != condition.result:
                             all_conditions_satisfied = False
                             break
-                    except:
+                    except AttributeError:
                         logging.error("Not Found Expression %s in Context", condition.expression)
                         all_conditions_satisfied = False  
                 else:
@@ -41,7 +41,7 @@ class StateMachine:
     def __ExecActions(self,actions):
         all_action_executed = True
         if(actions is not None):
-            _actions = actions.actions
+            _actions = actions.actions_list
             for action in _actions:
                 module,expression = self.__PrepareExpression(action.expression)
                 if module in self.context:                    
@@ -52,7 +52,7 @@ class StateMachine:
                             func()
                         else:
                             func
-                    except:
+                    except AttributeError:
                         logging.error("Not Found Expression %s in Context", action.expression)
                         all_action_executed = False;
                 else:
