@@ -10,6 +10,7 @@ from os.path import basename
 from os.path import dirname
 from os.path import join
 from os.path import splitext
+import os
 
 from setuptools import find_packages
 from setuptools import setup
@@ -35,9 +36,10 @@ setup(
     author='ZigRazor',
     author_email='zigrazor@gmail.com',
     url='https://github.com/ZigRazor/PyStateMachine',
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
+    packages=[],
+    package_dir={"" : "src"},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
+    data_files=[('schema/',['schema/StateMachine.xsd'])],
     include_package_data=True,
     zip_safe=False,
     classifiers=[
@@ -70,9 +72,11 @@ setup(
     ],
     python_requires='>=3',
     install_requires=[
+        'defusedxml>=0.7.1',
         # eg: 'aspectlib==1.1.1', 'six>=1.7',
     ],
     extras_require={
+        'defusedxml': ['defusedxml>=0.7.1'],
         # eg:
         #   'rst': ['docutils>=0.11'],
         #   ':python_version=="2.6"': ['argparse'],
