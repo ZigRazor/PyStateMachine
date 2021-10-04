@@ -1,5 +1,6 @@
 class Action:
-    """ Define Action Class"""
+""" Define Action Class"""
+
     def __init__(self, expression: str):
         self.expression = expression
 
