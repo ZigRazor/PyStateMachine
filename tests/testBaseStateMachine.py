@@ -8,25 +8,21 @@ test = 2
 
 def everFalse():
     """Return false"""
-
     return False
 
 
 def everTrue():
     """Return false"""
-
     return True
 
 
 def testPrint():
     """Return Test"""
-
     print("Test")
 
 
 def setTestTo3():
     """Sets Test to 3"""
-
     global test    # Needed to modify global copy of globvar
     print(test)
     test = 3
@@ -35,7 +31,6 @@ def setTestTo3():
 
 def printTest():
     """Print Test"""
-
     print("Test: ", test)
 
 
@@ -45,7 +40,6 @@ class TestBaseStateMachine(unittest.TestCase):
     def test1(self):
         """Test Statemachine"""
         sm = StateMachine("../sample/sample1.xml")
-
         sm.LoadStateMachine()
         self.assertEqual(sm.get_current_state(), "Enter", "Should be Enter")
         # OK Event
@@ -66,7 +60,6 @@ class TestBaseStateMachine(unittest.TestCase):
 
     def test2(self):
         """Second Test for Statemachine"""
-
         sm = StateMachine("../sample/sample2.xml")
 
         sm.LoadStateMachine()
@@ -93,7 +86,6 @@ class TestBaseStateMachine(unittest.TestCase):
 
     def test3(self):
         """Test 3 for State Machine"""
-
         sm = StateMachine("../sample/sample3.xml")
 
         sm.LoadStateMachine()
@@ -120,7 +112,6 @@ class TestBaseStateMachine(unittest.TestCase):
 
     def test4(self):
         """Test 4 for state machine"""
-
         sm = StateMachine("../sample/sample4.xml")
 
         sm.LoadStateMachine()
@@ -147,7 +138,6 @@ class TestBaseStateMachine(unittest.TestCase):
 
     def test5(self):
         """Test 5 for state machine"""
-
         sm = StateMachine("../sample/sample5.xml")
 
         sm.LoadStateMachine()
@@ -174,7 +164,6 @@ class TestBaseStateMachine(unittest.TestCase):
 
     def test6(self):
         """Test 6 for state machine"""
-
         global test
         test = 2
         sm = StateMachine("../sample/sample6.xml")

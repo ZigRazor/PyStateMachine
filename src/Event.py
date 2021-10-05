@@ -7,7 +7,6 @@ class Event:
 
     def __init__(self, name: str, to_state: str, pre_conditions: Conditions, post_conditions: Conditions, pre_actions: Actions, post_actions: Actions):
         """Initialize Event Class"""
-
         self.name = name
         self.to_state = to_state
         self.pre_conditions = pre_conditions
@@ -17,7 +16,6 @@ class Event:
 
     def to_string(self):
         """To string"""
-
         result_s = "Event: \n"
         result_s += "\tName: " + self.name + "\n"
         result_s += "\tToState: " + self.to_state + "\n"
