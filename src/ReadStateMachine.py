@@ -14,17 +14,17 @@ def ReadStateMachineFile(xml_file: str):
     tree = ET.parse(xml_file)
     root = tree.getroot()
     for states_child in root:
-        #print(states_child.tag, states_child.attrib)
+        # print(states_child.tag, states_child.attrib)
         # States Element
         if states_child.tag == "State":
-            #print("State element")
+            # print("State element")
             # State Element
             state_name = ""
             events = {}
             for state_child in states_child:
-                #print(state_child.tag, state_child.attrib)
+                # print(state_child.tag, state_child.attrib)
                 if state_child.tag == "Event":
-                    #print("Event element")
+                    # print("Event element")
                     # State->Event Element
                     event_name = ""
                     to_state = ""
@@ -35,13 +35,13 @@ def ReadStateMachineFile(xml_file: str):
 
                     for event_child in state_child:
 
-                        #print(event_child.tag, event_child.attrib)
+                        # print(event_child.tag, event_child.attrib)
                         if event_child.tag == "Name":
-                            #print("Name element = ", event_child.text)
+                            # print("Name element = ", event_child.text)
                             # State->Event->Name Element
                             event_name = event_child.text
                         elif event_child.tag == "ToState":
-                            #print("ToState element = ", event_child.text)
+                            # print("ToState element = ", event_child.text)
                             # State->Event->ToState Element
                             to_state = event_child.text
                         elif event_child.tag == "PreConditions":
@@ -113,14 +113,14 @@ def ReadStateMachineFile(xml_file: str):
                         event_name, to_state, pre_conditions, post_conditions, pre_actions, post_actions)
                     # print(event.to_string())
                 elif state_child.tag == "Name":
-                    #print("Name element = ", state_child.text)
+                    # print("Name element = ", state_child.text)
                     # State->Name Element
                     state_name = state_child.text
 
             states[state_name] = State(state_name, events)
 
         elif states_child.tag == "Initial_State":
-            #print ("Initial_State element = ", states_child.text)
+            # print ("Initial_State element = ", states_child.text)
             # Initial_State Element
             initial_state = states_child.text
 
