@@ -24,6 +24,13 @@ Work in Progress
 
 ## How to contribute [![GitHub contributors](https://img.shields.io/github/contributors/ZigRazor/PyStateMachine.svg)](https://GitHub.com/ZigRazor/PyStateMachine/graphs/contributors/)
 Read the [CONTRIBUTING GUIDE](https://github.com/ZigRazor/PyStateMachine/blob/main/CONTRIBUTING.md)
+
+## Hacktoberfest
+
+We are pleased to inform you that this repository is participating in the **#Hacktoberfest**!
+
+Happy Coding!
+
 ## Contact
 E-Mail : zigrazor@gmail.com
 
@@ -40,6 +47,4 @@ To get updated ***watch*** the project  [![GitHub watchers](https://img.shields.
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=ZigRazor&repo=PyStateMachine)](https://github.com/ZigRazor/PyStateMachine)
 
-### Used Languages
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ZigRazor&layout=compact)](https://github.com/ZigRazor/PyStateMachine)
 
