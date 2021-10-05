@@ -30,6 +30,7 @@ def printTest():
 
 
 class TestBaseStateMachine(unittest.TestCase):
+    """Test state machine using various samples"""
 
     def test1(self):
 

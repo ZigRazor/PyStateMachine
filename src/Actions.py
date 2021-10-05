@@ -1,4 +1,6 @@
 class Actions:
+    """Define and check actions"""
+
     def __init__(self, actions=None):
         if actions is None:
             actions = []
