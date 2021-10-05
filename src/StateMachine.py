@@ -5,7 +5,7 @@ import logging
 class StateMachine:
     """
     This is a class defines state machine operations.
-      
+
     Attributes:
         xml_file (str): The name of the xml that defines the state machine.
         states (list): list of possible states of the machine.
@@ -16,7 +16,7 @@ class StateMachine:
     def __init__(self, xml_file: str):
         """
         The constructor for StateMachine class.
-  
+
         Parameters:
            xml_file (str): The name of the xml that defines the state machine.
         """
@@ -31,7 +31,7 @@ class StateMachine:
     def __CheckConditions(self, conditions):
         """
         This Function checks the conditions passed as argument
-  
+
         Parameters:
            conditions (list): List of condition to check.
         Returns:
@@ -69,7 +69,7 @@ class StateMachine:
     def __ExecActions(self, actions):
         """
         This Function executes the actions passed as argument
-  
+
         Parameters:
            actions (list): List of actions to execute.
         Returns:
@@ -115,7 +115,7 @@ class StateMachine:
     def __PrepareExpression(expression):
         """
         This Function split expression in module and expression
-  
+
         Parameters:
            expression (str): complete expression.
         Returns:
@@ -148,7 +148,7 @@ class StateMachine:
     def addModuleToContext(self, module: str):
         """
         This Function adds a module to the context of state machine
-  
+
         Parameters:
            module (str): The module to add.
         """
@@ -158,7 +158,7 @@ class StateMachine:
     def InjectEvent(self, event: str):
         """
         This Function execute the event injected
-  
+
         Parameters:
            event (str): Event injected
         """
