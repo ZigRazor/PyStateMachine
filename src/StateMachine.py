@@ -38,7 +38,7 @@ class StateMachine:
             all_conditions_satisfied: a boolean that indicates if all conditions are satisfied
         """
         all_conditions_satisfied = True
-        if(conditions is not None):
+        if conditions is not None:
             _conditions = conditions.conditions_list
             for condition in _conditions:
                 module, expression = self.__PrepareExpression(
@@ -76,7 +76,7 @@ class StateMachine:
             all_action_executed: a boolean that indicates if all actions are executed
         """
         all_action_executed = True
-        if(actions is not None):
+        if actions is not None:
             _actions = actions.actions_list
             for action in _actions:
                 module, expression = self.__PrepareExpression(
@@ -138,7 +138,7 @@ class StateMachine:
         """
         This Function load state machine configuration
         """
-        if (self.states is not None):
+        if self.states is not None:
             logging.error("State Machine already loaded")
         else:
             self.states, self.current_state = ReadStateMachineFile(
@@ -171,12 +171,12 @@ class StateMachine:
             # Preconditions
             all_pre_conditions_satisfied = self.__CheckConditions(
                 handled_event.pre_conditions)
-            if(all_pre_conditions_satisfied):
+            if all_pre_conditions_satisfied:
                 logging.debug("PreConditions satisfied")
                 # Preactions
                 all_pre_actions_executed = self.__ExecActions(
                     handled_event.pre_actions)
-                if(all_pre_actions_executed):
+                if all_pre_actions_executed:
                     logging.debug("PreActions Executed")
                     # Transition
                     logging.debug("Transition %s ------> %s",
@@ -185,12 +185,12 @@ class StateMachine:
                     # Postactions
                     all_post_actions_executed = self.__ExecActions(
                         handled_event.post_actions)
-                    if(all_post_actions_executed):
+                    if all_post_actions_executed:
                         logging.debug("PostActions Executed")
                         # Postconditions
                         all_post_conditions_satisfied = self.__CheckConditions(
                             handled_event.post_conditions)
-                        if(all_post_conditions_satisfied):
+                        if all_post_conditions_satisfied:
                             logging.debug("PostConditions Satisfied")
                         else:
                             logging.error(
