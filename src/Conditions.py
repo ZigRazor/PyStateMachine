@@ -1,5 +1,5 @@
 class Conditions:
-"""Define Conditions"""
+    """Define Conditions"""
 
     def __init__(self, conditions=None):
         if conditions is None:

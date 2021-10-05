@@ -1,5 +1,5 @@
 class State:
-"""Define the state class"""
+    """Define the state class"""
 
     def __init__(self, name: str, events=None):
         if events is None:
