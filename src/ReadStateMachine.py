@@ -8,6 +8,7 @@ import defusedxml.ElementTree as ET
 
 
 def ReadStateMachineFile(xml_file: str):
+    """Read the xml file and parse it"""
     states = {}
     initial_state = ""
     tree = ET.parse(xml_file)
