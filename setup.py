@@ -14,6 +14,7 @@ from setuptools import setup
 
 changelog_url = 'https://github.com/ZigRazor/PyStateMachine/blob/master/CHANGELOG.md'
 
+
 def read(*names, **kwargs):
     with io.open(
         join(dirname(__file__), *names),
@@ -44,7 +45,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     classifiers=[
-        # complete classifier list: 
+        # complete classifier list:
         # http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

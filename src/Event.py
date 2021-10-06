@@ -6,8 +6,8 @@ class Event:
     """Construct an Event class"""
 
     def __init__(
-        self, name: str, 
-        to_state: str, 
+        self, name: str,
+        to_state: str,
         pre_conditions: Conditions,
         post_conditions: Conditions,
         pre_actions: Actions,

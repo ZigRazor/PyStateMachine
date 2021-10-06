@@ -10,7 +10,7 @@ class StateMachine:
         xml_file (str): The name of the xml that defines the state machine.
         states (list): list of possible states of the machine.
         current_state (str): the current state of the machine.
-        context (dict): dictionary that contains the imported module 
+        context (dict): dictionary that contains the imported module
             at runtime for state machine operations.
         saved_state (list): list of variables for restore state in case of rollback.
     """
@@ -39,7 +39,7 @@ class StateMachine:
         Parameters:
            conditions (list): List of condition to check.
         Returns:
-            all_conditions_satisfied: 
+            all_conditions_satisfied:
                 a boolean that indicates if all conditions are satisfied
         """
         all_conditions_satisfied = True
