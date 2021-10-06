@@ -12,6 +12,8 @@ from os.path import join
 from os.path import splitext
 from setuptools import setup
 
+changelog_url = 'https://github.com/ZigRazor/PyStateMachine/blob/master/CHANGELOG.md'
+
 
 def read(*names, **kwargs):
     with io.open(
@@ -27,7 +29,10 @@ setup(
     license='GNU GENERAL PUBLIC LICENSE',
     description='PyStateMachine Package',
     long_description='%s\n%s' % (
-        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.md')),
+        re.compile(
+            '^.. start-badges.*^.. end-badges',
+            re.M | re.S
+        ).sub('', read('README.md')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.md'))
     ),
     author='ZigRazor',
@@ -40,7 +45,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     classifiers=[
-        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+        # complete classifier list:
+        # http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU GENERAL PUBLIC LICENSE',
@@ -61,7 +67,7 @@ setup(
         'Topic :: Utilities',
     ],
     project_urls={
-        'Changelog': 'https://github.com/ZigRazor/PyStateMachine/blob/master/CHANGELOG.md',
+        'Changelog': changelog_url,
         'Issue Tracker': 'https://github.com/ZigRazor/PyStateMachine/issues',
     },
     keywords=[
