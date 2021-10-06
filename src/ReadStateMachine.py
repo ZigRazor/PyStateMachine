@@ -110,7 +110,13 @@ def ReadStateMachineFile(xml_file: str):
                             post_actions = Actions(post_action_elements)
 
                     events[event_name] = Event(
-                        event_name, to_state, pre_conditions, post_conditions, pre_actions, post_actions)
+                        event_name, 
+                        to_state, 
+                        pre_conditions, 
+                        post_conditions, 
+                        pre_actions, 
+                        post_actions
+                    )
                     # print(event.to_string())
                 elif state_child.tag == "Name":
                     # print("Name element = ", state_child.text)

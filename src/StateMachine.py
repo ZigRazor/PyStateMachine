@@ -10,7 +10,8 @@ class StateMachine:
         xml_file (str): The name of the xml that defines the state machine.
         states (list): list of possible states of the machine.
         current_state (str): the current state of the machine.
-        context (dict): dictionary that contains the imported module at runtime for state machine operations.
+        context (dict): dictionary that contains the imported module 
+            at runtime for state machine operations.
         saved_state (list): list of variables for restore state in case of rollback.
     """
     def __init__(self, xml_file: str):
@@ -25,8 +26,11 @@ class StateMachine:
         self.current_state = ""
         self.context = {}
         self.saved_state = None
-        logging.basicConfig(filename=xml_file.split(sep=".xml")[
-                            0] + '.log', format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+        logging.basicConfig(
+            filename=xml_file.split(sep=".xml")[0] + '.log',
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            level=logging.DEBUG
+        )
 
     def __CheckConditions(self, conditions):
         """
@@ -35,7 +39,8 @@ class StateMachine:
         Parameters:
            conditions (list): List of condition to check.
         Returns:
-            all_conditions_satisfied: a boolean that indicates if all conditions are satisfied
+            all_conditions_satisfied: 
+                a boolean that indicates if all conditions are satisfied
         """
         all_conditions_satisfied = True
         if conditions is not None:
