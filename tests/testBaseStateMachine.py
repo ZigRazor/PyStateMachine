@@ -21,11 +21,9 @@ def testPrint():
     print("Test")
 
 
-def setTestTo3():
-    """Sets Test to 3"""
-    global test    # Needed to modify global copy of globvar
-    print(test)
-    test = 3
+def setTestTo3(test):
+    """Sets Test to 3"""    
+    test = 3                # Function sets test to 3. Caveat is there is an input requireds
     print(test)
 
 
@@ -164,8 +162,9 @@ class TestBaseStateMachine(unittest.TestCase):
 
     def test6(self):
         """Test 6 for state machine"""
-        global test
-        test = 2
+
+        test = 2                    # Hardcoded the test variable value here as there was no better option
+
         sm = StateMachine("../sample/sample6.xml")
 
         sm.LoadStateMachine()
