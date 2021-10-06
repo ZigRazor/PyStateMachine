@@ -26,6 +26,11 @@ def setTestTo3(test):
     test = 3                # Function sets test to 3. Caveat is there is an input requireds
     print(test)
 
+# New function that changes the test variable to 2
+def setTestTo2(test):
+    """Sets Test to 2"""
+    test = 2
+    print(test)
 
 def printTest():
     """Print Test"""
@@ -162,9 +167,8 @@ class TestBaseStateMachine(unittest.TestCase):
 
     def test6(self):
         """Test 6 for state machine"""
-
-        test = 2                    # Hardcoded the test variable value here as there was no better option
-
+        setTestTo2(test)    # Using the newly written function
+        
         sm = StateMachine("../sample/sample6.xml")
 
         sm.LoadStateMachine()
