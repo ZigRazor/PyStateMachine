@@ -7,10 +7,12 @@ test = [2]
 
 
 def setTest(value):
+    """Set the test variable to the value specified"""
     test[0] = value
 
 
 def getTest():
+    """Return the value of test variable"""
     return test[0]
 
 
