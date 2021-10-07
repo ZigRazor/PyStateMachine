@@ -3,7 +3,17 @@ import sys
 import unittest
 sys.path.append('../src')
 
-test = 2
+test = [2]
+
+
+def setTest(value):
+    """Set the test variable to the value specified"""
+    test[0] = value
+
+
+def getTest():
+    """Return the value of test variable"""
+    return test[0]
 
 
 def everFalse():
@@ -23,15 +33,14 @@ def testPrint():
 
 def setTestTo3():
     """Sets Test to 3"""
-    global test    # Needed to modify global copy of globvar
-    print(test)
-    test = 3
-    print(test)
+    print(getTest())
+    setTest(3)
+    print(getTest())
 
 
 def printTest():
     """Print Test"""
-    print("Test: ", test)
+    print("Test: ", getTest())
 
 
 class TestBaseStateMachine(unittest.TestCase):
@@ -164,8 +173,7 @@ class TestBaseStateMachine(unittest.TestCase):
 
     def test6(self):
         """Test 6 for state machine"""
-        global test
-        test = 2
+        setTest(2)
         sm = StateMachine("../sample/sample6.xml")
 
         sm.LoadStateMachine()
