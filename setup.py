@@ -24,10 +24,10 @@ def read(*names, **kwargs):
 
 
 setup(
-    name='PyStateMachine',
-    version='0.0.1',
+    name='PyStateMachines',
+    version='0.0.3',
     license='GNU GENERAL PUBLIC LICENSE',
-    description='PyStateMachine Package',
+    description='PyStateMachines Package',
     long_description='%s\n%s' % (
         re.compile(
             '^.. start-badges.*^.. end-badges',
