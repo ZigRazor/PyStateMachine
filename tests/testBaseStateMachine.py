@@ -1,3 +1,4 @@
+#importing necessary packages 
 from StateMachine import StateMachine
 import sys
 import unittest
@@ -5,7 +6,7 @@ sys.path.append('../src')
 
 test = [2]
 
-
+#defining functions
 def setTest(value):
     """Set the test variable to the value specified"""
     test[0] = value
@@ -42,7 +43,7 @@ def printTest():
     """Print Test"""
     print("Test: ", getTest())
 
-
+#declaring class TestBaseStateMachine
 class TestBaseStateMachine(unittest.TestCase):
     """Test state machine using various samples"""
 
