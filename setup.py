@@ -25,7 +25,7 @@ def read(*names, **kwargs):
 
 setup(
     name='PyStateMachines',
-    version='0.0.5',
+    version='0.0.6',
     license='GNU GENERAL PUBLIC LICENSE',
     description='PyStateMachines Package',
     long_description='%s\n%s' % (
@@ -35,7 +35,7 @@ setup(
         ).sub('', read('README.md')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.md'))
     ),
-    long_description_content_type='text/markdown'
+    long_description_content_type='text/markdown',
     author='ZigRazor',
     author_email='zigrazor@gmail.com',
     url='https://github.com/ZigRazor/PyStateMachine',
@@ -78,7 +78,7 @@ setup(
         'state',
         'finite-state machine',
         'automaton',
-        'state-machine'
+        'state-machine',
     ],
     python_requires='>=3',
     install_requires=[
